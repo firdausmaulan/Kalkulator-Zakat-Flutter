@@ -32,11 +32,11 @@ void showExitDialog(context) {
                         onPressed: () async {
                           Navigator.pop(context);
                         },
-                        borderSide: BorderSide(color: Colors.green),
+                        borderSide: BorderSide(color: Constants.PRIMARY_COLOR),
                         child: Text(
                           "Tidak".toUpperCase(),
                           style: TextStyle(
-                              color: Colors.green,
+                              color: Constants.PRIMARY_COLOR,
                               fontWeight: FontWeight.bold),
                         )),
                   ),
