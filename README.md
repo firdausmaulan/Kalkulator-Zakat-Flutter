@@ -2,4 +2,4 @@
 
 Build with flutter / dart language
 
-![](https://i.ibb.co/DQQcjmW/kalkulator-zakat.jpg)
+![](https://s7.gifyu.com/images/zakat.gif)
