@@ -1,7 +1,10 @@
+import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:kalkulatorzakat/features/developer_page.dart';
 import 'package:kalkulatorzakat/utils/constants.dart' as Constants;
 import 'package:kalkulatorzakat/utils/flutter_masked_text.dart';
+import 'package:kalkulatorzakat/features/exit_dialog.dart' as ExitDialog;
 
 class CalculatorPage extends StatefulWidget {
   CalculatorPage({Key key, this.title}) : super(key: key);
@@ -27,7 +30,14 @@ class _CalculatorPageState extends State<CalculatorPage> {
   final tfAlmController = MoneyMaskedTextController();
 
   @override
+  void initState() {
+    BackButtonInterceptor.add(backInterceptor);
+    super.initState();
+  }
+
+  @override
   void dispose() {
+    BackButtonInterceptor.remove(backInterceptor);
     tfSalaryController.dispose();
     tfOtherIncomeController.dispose();
     tfInstallmentController.dispose();
@@ -142,5 +152,10 @@ class _CalculatorPageState extends State<CalculatorPage> {
       monthlyAlm = alms.round();
       tfAlmController.text = monthlyAlm.toString();
     });
+  }
+
+  bool backInterceptor(bool stopDefaultButtonEvent) {
+    ExitDialog.showExitDialog(context);
+    return true;
   }
 }
