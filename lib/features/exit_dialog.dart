@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:kalkulatorzakat/utils/constants.dart' as Constants;
 import 'package:kalkulatorzakat/utils/images.dart' as Images;
 
+bool isDialogShowing = false;
+
 void showExitDialog(context) {
   double width = MediaQuery.of(context).size.width;
   double buttonWidth = width / 3;
@@ -30,6 +32,7 @@ void showExitDialog(context) {
                     width: buttonWidth,
                     child: OutlineButton(
                         onPressed: () async {
+                          isDialogShowing = false;
                           Navigator.pop(context);
                         },
                         borderSide: BorderSide(color: Constants.PRIMARY_COLOR),

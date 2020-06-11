@@ -56,6 +56,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
           IconButton(
             icon: Icon(Icons.info_outline, color: Colors.white),
             onPressed: () {
+              Constants.currentPage = Constants.DEVELOPER_PAGE;
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => DeveloperPage()),
@@ -155,7 +156,15 @@ class _CalculatorPageState extends State<CalculatorPage> {
   }
 
   bool backInterceptor(bool stopDefaultButtonEvent) {
-    ExitDialog.showExitDialog(context);
+    if (Constants.currentPage == Constants.CALCULATOR_PAGE &&
+        !ExitDialog.isDialogShowing) {
+      ExitDialog.isDialogShowing = true;
+      ExitDialog.showExitDialog(context);
+    } else {
+      Constants.currentPage = Constants.CALCULATOR_PAGE;
+      ExitDialog.isDialogShowing = false;
+      Navigator.pop(context);
+    }
     return true;
   }
 }

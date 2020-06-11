@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:kalkulatorzakat/utils/constants.dart' as Constants;
 
 class DeveloperPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () => {
+              Constants.currentPage = Constants.CALCULATOR_PAGE,
+              Navigator.of(context).pop()
+            },
+          ),
           title: Text("Developer"),
         ),
         body: Padding(
