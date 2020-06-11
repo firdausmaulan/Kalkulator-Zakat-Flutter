@@ -212,7 +212,7 @@ class MoneyMaskedTextController extends TextEditingController {
         .reversed
         .toList(growable: true);
 
-    //textRepresentation.insert(precision, decimalSeparator);
+    textRepresentation.insert(precision, '');
 
     for (var i = precision + 4; true; i = i + 4) {
       if (textRepresentation.length > i) {
