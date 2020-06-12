@@ -72,6 +72,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
             SizedBox(height: 10),
             TextField(
               controller: tfSalaryController,
+              maxLength: 15,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                   border: OutlineInputBorder(
@@ -85,6 +86,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
             SizedBox(height: 20),
             TextField(
               controller: tfOtherIncomeController,
+              maxLength: 15,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                   border: OutlineInputBorder(
@@ -98,6 +100,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
             SizedBox(height: 20),
             TextField(
               controller: tfInstallmentController,
+              maxLength: 15,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                   border: OutlineInputBorder(
@@ -111,6 +114,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
             SizedBox(height: 20),
             TextField(
               controller: tfAlmController,
+              maxLength: 15,
               readOnly: true,
               decoration: InputDecoration(
                   border: OutlineInputBorder(
@@ -143,16 +147,17 @@ class _CalculatorPageState extends State<CalculatorPage> {
   // Group of EVENT METHOD
   void _countMonthlyAlms() {
     setState(() {
-      monthlySalary =
-          int.tryParse(tfSalaryController.text.replaceAll(".", "")) ?? 0;
-      otherIncome =
-          int.tryParse(tfOtherIncomeController.text.replaceAll(".", "")) ?? 0;
-      monthlyInstallment =
-          int.tryParse(tfInstallmentController.text.replaceAll(".", "")) ?? 0;
+      monthlySalary = getIntValue(tfSalaryController);
+      otherIncome = getIntValue(tfOtherIncomeController);
+      monthlyInstallment = getIntValue(tfInstallmentController);
       double alms = 0.025 * (monthlySalary + otherIncome - monthlyInstallment);
       monthlyAlm = alms.round();
       tfAlmController.text = monthlyAlm.toString();
     });
+  }
+
+  int getIntValue(MoneyMaskedTextController controller) {
+    return int.tryParse(controller.text.replaceAll(".", "")) ?? 0;
   }
 
   bool backInterceptor(bool stopDefaultButtonEvent) {
